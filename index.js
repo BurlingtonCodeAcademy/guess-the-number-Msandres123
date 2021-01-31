@@ -108,7 +108,6 @@ async function gameSelect() {
     } else if (answerOne === "lower") {
       // want to loop it so it repeats
       // need to make a new range
-
       max = numberGen - 1;
       numberGen = smartGuess(max, min);
       answerOne = await ask(
@@ -128,7 +127,11 @@ async function gameSelect() {
 
   if (answerOne === "equal" || answerOne === "yes") {
     console.log(
-      "Your number was " + secretNumber + " I guessed it in " + counter + " guesses, I win! Game Over!!!"
+      "Your number was " +
+        secretNumber +
+        " I guessed it in " +
+        counter +
+        " guesses, I win! Game Over!!!"
     );
   }
   let playAgain = await ask(
@@ -136,7 +139,7 @@ async function gameSelect() {
   );
 
   if ((playAgain = "yes")) {
-    // this is good but user cannot put a space before yes or it won't work, so I replaxed the === with a single =.
+    // this is good but user cannot put a space before yes or it won't work, so I replaced the === with a single =.
     gameSelect();
   } else {
     console.log("K BYE!!!!");
@@ -159,8 +162,8 @@ async function compPicksNum() {
 
   let userGuess = await ask(
     "Okay I've come up with the number, what do you think it is? "
-  ); 
-  let counter = 1; // intially set at 0, but it would not count the first attempt 
+  );
+  let counter = 1; // intially set at 0, but it would not count the first attempt
   while (isNaN(userGuess)) {
     userGuess = await ask("That was not a number, pleast enter a number. ");
   }
@@ -177,7 +180,11 @@ async function compPicksNum() {
   if ((userGuess = magicNum)) {
     //for some reason would not work with ( userGuess === magicNumber)
     console.log(
-      "My number was " + userGuess + ". Congratulations bruh, you guessed it in " + counter + " guesses, you win!!"
+      "My number was " +
+        userGuess +
+        ". Congratulations bruh, you guessed it in " +
+        counter +
+        " guesses, you win!!"
     ); // can't seem to make this work
   }
 
@@ -185,8 +192,7 @@ async function compPicksNum() {
     'Would you like to play again? If so enter "yes". '
   );
 
-  if (playAgain === "yes") {
-    gameSelect();
+  if (playAgain = "yes") { //also changed the === to a single =, may be bad practice but it is more functional in this case because program is less strict about the yes entered in. 
   } else {
     console.log("K BYE!!!!");
     process.exit();
