@@ -87,7 +87,7 @@ async function gameSelect() {
           "!"
       );
       answerOne = await ask(
-        "is your number lower, higher or equal to " + numberGen + "?" //added to hopefully prevent infinite loop from occurring : update it work
+        "is your number lower, higher or equal to " + numberGen + "? " //added to hopefully prevent infinite loop from occurring : update it work
       );
     } else if (answerOne === "lower" && max <= min) {
       console.log(
@@ -98,13 +98,13 @@ async function gameSelect() {
           "!"
       ); // at this point im pretty sure max and min are equal so either could be used
       answerOne = await ask(
-        "is your number lower, higher or equal to " + numberGen + "?" //added to hopefully prevent infinite loop from occurring : update it work
+        "is your number lower, higher or equal to " + numberGen + "? " //added to hopefully prevent infinite loop from occurring : update it work
       );
     } else if (answerOne === "higher") {
       min = numberGen + 1; //not working as desired, needed to add the plus one
       numberGen = smartGuess(max, min); // replaced existing number generated with smart one; moved it down to allow user to make range.
       answerOne = await ask(
-        "is your number lower, higher or equal to " + numberGen + "?"
+        "is your number lower, higher or equal to " + numberGen + "? "
       );
     } else if (answerOne === "lower") {
       // want to loop it so it repeats
@@ -112,12 +112,12 @@ async function gameSelect() {
       max = numberGen - 1;
       numberGen = smartGuess(max, min);
       answerOne = await ask(
-        `is your number higher, lower or equal to ${numberGen}?`
+        `is your number higher, lower or equal to ${numberGen}? `
       );
     } else if (answerOne !== acceptableAnswers) {
       counter -= 1; // inserted so that an unacceptable entry will not count as a guess
       answerOne = await ask(
-        "I did not understand that. Please enter equal, lower, or higher."
+        "I did not understand that. Please enter equal, lower, or higher. "
       );
     }
 
@@ -139,8 +139,7 @@ async function gameSelect() {
     'Would you like to play again? If so enter "yes". '
   );
   playAgain = playAgain.toLowerCase();
-  if ((playAgain = "yes")) {
-    // this is good but user cannot put a space before yes or it won't work, so I replaced the === with a single =.
+  if ((playAgain === "yes")) {
     gameSelect();
   } else {
     console.log("K BYE!!!!");
@@ -193,8 +192,8 @@ async function compPicksNum() {
     'Would you like to play again? If so enter "yes". '
   );
   playAgain = playAgain.toLowerCase();
-  if ((playAgain = "yes")) {
-    //also changed the === to a single =, may be bad practice but it is more functional in this case because program is less strict about the yes entered in.
+  if ((playAgain === "yes")) { // does not allow user to put in a space without, tried swithcing === for = but it did nor work. Same above.
+     
   } else {
     console.log("K BYE!!!!");
     process.exit();
