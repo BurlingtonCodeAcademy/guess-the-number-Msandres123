@@ -129,7 +129,7 @@ async function gameSelect() {
   if (answerOne === "equal" || answerOne === "yes") {
     console.log(
       "Your number was " +
-        secretNumber +
+        numberGen +
         ", I guessed it in " +
         counter +
         " guesses, I win! Game Over!!!"
