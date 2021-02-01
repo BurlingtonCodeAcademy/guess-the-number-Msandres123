@@ -89,12 +89,12 @@ async function gameSelect() {
       answerOne = await ask(
         "is your number lower, higher or equal to " + numberGen + "? " //added to hopefully prevent infinite loop from occurring : update it work
       );
-    } else if (answerOne === "lower" && max <= min) {
+    } else if (answerOne === "lower" && max - 1 <= min) { // added in the max - 1 because the lower was not working
       console.log(
-        "Cheater, cheater, pumpkin eater!!! You said it was lower than " +
-          max +
-          " so it can't be higher than " +
-          (min - 1) +
+        "Cheater, cheater, pumpkin eater!!! You said it was higher than " +
+          (max - 2) + // alos put in a -2 here so it would return the right number values
+          " so it can't be lower than " +
+          (min) +
           "!"
       ); // at this point im pretty sure max and min are equal so either could be used
       answerOne = await ask(
@@ -139,7 +139,7 @@ async function gameSelect() {
     'Would you like to play again? If so enter "yes". '
   );
   playAgain = playAgain.toLowerCase();
-  if ((playAgain === "yes")) {
+  if (playAgain === "yes") {
     gameSelect();
   } else {
     console.log("K BYE!!!!");
@@ -192,8 +192,8 @@ async function compPicksNum() {
     'Would you like to play again? If so enter "yes". '
   );
   playAgain = playAgain.toLowerCase();
-  if ((playAgain === "yes")) { // does not allow user to put in a space without, tried swithcing === for = but it did nor work. Same above.
-     
+  if (playAgain === "yes") {
+    // does not allow user to put in a space without, tried swithcing === for = but it did nor work. Same above.
   } else {
     console.log("K BYE!!!!");
     process.exit();
