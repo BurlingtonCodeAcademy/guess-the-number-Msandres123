@@ -31,6 +31,7 @@ async function gameSelect() {
     );
   }
   if (gameType === "user") {
+    // changed === to = because it would not accept " user" or " comuter" with a space. But it did not make a difference, so I changed it back.
     userPicksNum();
   } else if (gameType === "computer") {
     compPicksNum();
@@ -47,7 +48,7 @@ async function gameSelect() {
   console.log(
     "Let's play a game where you (human) make up a number and I (computer) try to guess it."
   );
-  let max = await ask("what would you like the range to be?");
+  let max = await ask("What would you like the range to be? ");
   while (isNaN(max)) {
     max = await ask("That was not a number, pleast enter a number. "); //can't seem to get this to work when user enters a NaN
   }
@@ -129,7 +130,7 @@ async function gameSelect() {
     console.log(
       "Your number was " +
         secretNumber +
-        " I guessed it in " +
+        ", I guessed it in " +
         counter +
         " guesses, I win! Game Over!!!"
     );
@@ -137,7 +138,7 @@ async function gameSelect() {
   let playAgain = await ask(
     'Would you like to play again? If so enter "yes". '
   );
-
+  playAgain = playAgain.toLowerCase();
   if ((playAgain = "yes")) {
     // this is good but user cannot put a space before yes or it won't work, so I replaced the === with a single =.
     gameSelect();
@@ -181,8 +182,8 @@ async function compPicksNum() {
     //for some reason would not work with ( userGuess === magicNumber)
     console.log(
       "My number was " +
-        userGuess +
-        ". Congratulations bruh, you guessed it in " +
+        magicNum +
+        ". Congratulations, you guessed it in " +
         counter +
         " guesses, you win!!"
     ); // can't seem to make this work
@@ -191,8 +192,9 @@ async function compPicksNum() {
   let playAgain = await ask(
     'Would you like to play again? If so enter "yes". '
   );
-
-  if (playAgain = "yes") { //also changed the === to a single =, may be bad practice but it is more functional in this case because program is less strict about the yes entered in. 
+  playAgain = playAgain.toLowerCase();
+  if ((playAgain = "yes")) {
+    //also changed the === to a single =, may be bad practice but it is more functional in this case because program is less strict about the yes entered in.
   } else {
     console.log("K BYE!!!!");
     process.exit();
