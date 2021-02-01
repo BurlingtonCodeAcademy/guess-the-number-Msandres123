@@ -22,7 +22,7 @@ async function gameSelect() {
   let gameType = await ask(
     `Let's play a guessing game. If you would like to pick the number, enter: "user". If you would like me (the computer) to pick the number enter: "computer". `
   );
-  gameType = gameType.toLowerCase(); // to allow the user to have an option between games I made an if/ else if condition
+  gameType = gameType.toLowerCase().trim(); // to allow the user to have an option between games I made an if/ else if condition
   let accpetableAnsTwo = ["user", "computer"];
   while (gameType !== "user" && gameType !== "computer") {
     //finally this worked, after numerous attempts I finally found a solution. You (bob) were right, it is a great feeling!!!!!!!!
@@ -72,13 +72,13 @@ async function gameSelect() {
   let answerOne = await ask(
     `Is your number higher, lower or equal to ${numberGen}? `
   );
-  answerOne = answerOne.toLowerCase(); // makes user enetered data no longer case sensitive
+  answerOne = answerOne.toLowerCase().trim(); // makes user enetered data no longer case sensitive
   // Now I would like to create a way for the user to enter yes/equal, higher(H) or lower(L)
   let counter = 1; // attempting to make a guess counter, originally set value to 0, but it did not count intial guess
   while (answerOne !== "yes" && answerOne !== "equal") {
     // originally put this on line 66 moved up because it wasn't working
     counter += 1;
-    if (answerOne === "higher" && max <= min) {
+    if (answerOne === "higher" && max <= numberGen) {
       console.log(
         "Cheater, cheater, pumpkin eater!!! You said it was lower than " +
           (min + 1) +
@@ -89,7 +89,7 @@ async function gameSelect() {
       answerOne = await ask(
         "is your number lower, higher or equal to " + numberGen + "? " //added to hopefully prevent infinite loop from occurring : update it work
       );
-    } else if (answerOne === "lower" && max - 1 <= min) { // added in the max - 1 because the lower was not working
+    } else if (answerOne === "lower" && numberGen <= min) { // added in the max - 1 because the lower was not working update: much better to use if the number generated is 
       console.log(
         "Cheater, cheater, pumpkin eater!!! You said it was higher than " +
           (max - 2) + // alos put in a -2 here so it would return the right number values
@@ -138,7 +138,7 @@ async function gameSelect() {
   let playAgain = await ask(
     'Would you like to play again? If so enter "yes". '
   );
-  playAgain = playAgain.toLowerCase();
+  playAgain = playAgain.toLowerCase().trim(); //solving a bunch of issues with .trim
   if (playAgain === "yes") {
     gameSelect();
   } else {
@@ -191,7 +191,7 @@ async function compPicksNum() {
   let playAgain = await ask(
     'Would you like to play again? If so enter "yes". '
   );
-  playAgain = playAgain.toLowerCase();
+  playAgain = playAgain.toLowerCase().trim(); // will allow for spaces
   if (playAgain === "yes") {
     // does not allow user to put in a space without, tried swithcing === for = but it did nor work. Same above.
   } else {
